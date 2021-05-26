@@ -3,4 +3,3 @@
 # 略略略...
 ### 固件为精简版，插件就几个。但是集成了海量驱动。
 - 电报群：https://t.me/DHDAXCW
-- TG频道：https://t.me/FWR2SR4S
