@@ -32,11 +32,6 @@ git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
 # Add luci-proto-minieap
 git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
 
-# Add luci-app-netdata
-rm -rf ../lean/luci-app-netdata
-svn co https://github.com/281677160/openwrt-package/trunk/luci-app-netdata
-rm -rf ../../customfeeds/packages/admin/netdata
-svn co https://github.com/281677160/openwrt-package/trunk/netdata
 
 # Add ServerChan
 git clone --depth=1 https://github.com/tty228/luci-app-serverchan
@@ -58,7 +53,7 @@ cp luci-app-diskman/Parted.Makefile parted/Makefile
 
 # Add luci-app-dockerman
 rm -rf ../lean/luci-app-docker
-git clone --depth=1 https://github.com/KFERMercer/luci-app-dockerman
+git clone --depth=1 https://github.com/lisaac/luci-app-dockerman
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker
 
 # Add luci-theme-argon
@@ -67,8 +62,8 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 rm -rf ../lean/luci-theme-argon
 
 # Add luci-app-smartdns & smartdns
-svn co https://github.com/281677160/openwrt-package/trunk/luci-app-smartdns
-svn co https://github.com/281677160/openwrt-package/trunk/smartdns
+svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns
+svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns
 
 # Add luci-app-aliddns
 svn co https://github.com/281677160/openwrt-package/trunk/luci-app-aliddns
@@ -82,11 +77,6 @@ svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/pa
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8188eu
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8192du
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl88x2bu
-
-# Add dafeiji
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/luci-app-cpufreq
-svn co https://github.com/281677160/openwrt-package/trunk/cpulimit
-svn co https://github.com/281677160/openwrt-package/trunk/luci-app-cpulimit
 
 # Add luci-udptools
 svn co https://github.com/zcy85611/Openwrt-Package/trunk/luci-udptools
