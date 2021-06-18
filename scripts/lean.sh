@@ -66,7 +66,7 @@ svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/application
 svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns
 
 # Add luci-app-aliddns
-svn co https://github.com/281677160/openwrt-package/trunk/luci-app-aliddns
+svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-aliddns
 
 # Add subconverter
 git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter
