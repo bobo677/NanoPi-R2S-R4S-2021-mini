@@ -67,9 +67,6 @@ svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/sma
 # Add luci-app-aliddns
 svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-aliddns
 
-# Add luci-app-cpufreq
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-cpufreq
-
 # Add subconverter
 git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter
 
