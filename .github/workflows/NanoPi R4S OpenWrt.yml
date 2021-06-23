@@ -54,8 +54,6 @@ jobs:
         cd openwrt
         rm -rf ./target/linux/rockchip
         svn co https://github.com/immortalwrt/immortalwrt/branches/master/target/linux/rockchip target/linux/rockchip
-        rm -rf ./target/linux/rockchip/Makefile
-        cp -f $GITHUB_WORKSPACE/patches/lean/Makefile ./target/linux/rockchip/Makefile
         rm -rf ./package/boot/uboot-rockchip
         rm -rf ./package/boot/boot/arm-trusted-firmware-rk3328
         svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/uboot-rockchip package/boot/uboot-rockchip
