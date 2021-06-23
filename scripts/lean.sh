@@ -151,6 +151,10 @@ sed -i '/uci commit system/i\uci set system.@system[0].hostname='FusionWrt'' pac
 sed -i "s/OpenWrt /DHDAXCW build $(TZ=UTC-8 date "+%Y.%m.%d") @ FusionWrt /g" package/lean/default-settings/files/zzz-default-settings
 # sed -i "s/FILES:=$(LINUX_DIR)/net/can/can-dev.ko/FILES:=$(LINUX_DIR)/drivers/net/can/dev/can-dev.ko \ package/kernel/linux/modules/can.mk
 
+#增加风扇调速
+wget -P target/linux/rockchip/armv8/base-files/etc/init.d https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3399/base-files/etc/init.d/fa-rk3399-pwmfan
+wget -P target/linux/rockchip/armv8/base-files/usr/bin https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3399/base-files/usr/bin/start-rk3399-pwm-fan.sh
+
 # Custom configs
 # git am $GITHUB_WORKSPACE/patches/lean/*.patch
 echo -e " DHDAXCW's FusionWrt built on "$(date +%Y.%m.%d)"\n -----------------------------------------------------" >> package/base-files/files/etc/banner
