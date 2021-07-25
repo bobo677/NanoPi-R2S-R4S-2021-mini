@@ -35,8 +35,8 @@ Signed-off-by: Leonidas P. Papadakos <papadakospan@gmail.com>
 +			clock-latency-ns = <40000>;
 +	};
 +   
-+ 	   };
-+ 	   gpu_opp_table: opp-table2 {
++ 	};
++ 	gpu_opp_table: opp-table2 {
 +-- 
 +2.25.1
 +
