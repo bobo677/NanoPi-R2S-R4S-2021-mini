@@ -1,6 +1,6 @@
-From b3f40b4e384d722d237f26a4cce70d60f4f8b95c Mon Sep 17 00:00:00 2001
-From: nobody <nobody@github.com>
-Date: Tue, 29 Dec 2020 23:00:00 +0800
+From b3f40b4e384d722d237f26a4dde70d60f4f8b95c Mon Sep 17 00:00:00 2021
+From: dhdaxcw <lasstp5011@gmail.com>
+Date: Tue, 29 Dec 2021 23:00:00 +0800
 Subject: [PATCH] rk3399-opp: added new cpu freq: 2.2Ghz/1.8Ghz
 
 ---
@@ -15,8 +15,8 @@ index 0000000..c8a9620
 +++ b/target/linux/rockchip/patches-5.4/999-rk3399-opp-added-new-cpu-freq-2Ghz-1.5Ghz.patch
 @@ -0,0 +1,60 @@
 +From bee28943396f9e75114f224c51230b8dcbf61010 Mon Sep 17 00:00:00 2001
-+From: Lawrence-Tang <tangzongsheng@gmail.com>
-+Date: Sat, 12 Dec 2020 19:14:09 +0800
++From: dhdaxcw <lasstp5011@gmail.com>
++Date: Sat, 12 Dec 2021 19:14:09 +0800
 +Subject: [PATCH] rk3399-opp: added new cpu freq: 2Ghz/1.5Ghz
 +
 +---
