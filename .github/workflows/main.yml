@@ -17,8 +17,8 @@ on:
   #   types: started
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/DHDAXCW/Station_P2_SourceCode
+  REPO_BRANCH: main
   CONFIG_FILE: configs/lean_stable.config
   DIY_SH: scripts/lean.sh
   IPV6MOD_IN_FIRMWARE: true
