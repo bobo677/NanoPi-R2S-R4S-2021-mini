@@ -1,16 +1,16 @@
-name: NanoPi R2S OpenWrt
+name: NanoPi R2S stable FusionWRT
 on:
   repository_dispatch:
   workflow_dispatch:
-  #schedule:
-    #- cron: 0 16 * * *
+  schedule:
+    - cron: 0 16 * * *
   # watch:
   #   types: started
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: configs/lean/lean2.config
+  CONFIG_FILE: configs/lean/lean_stable.config
   DIY_SH: scripts/lean.sh
   IPV6MOD_IN_FIRMWARE: true
   KMODS_IN_FIRMWARE: true
@@ -21,8 +21,8 @@ env:
 
 jobs:
   Build:
-    runs-on: ubuntu-18.04
-    if: github.repository == 'bobo677/NanoPi-R2S-R4S-2021-mini'
+    runs-on: ubuntu-20.04
+    if: github.repository == 'NanoPi-R2S-R4S-2021-mini'
     outputs:
       OPENWRTROOT: ${{ steps.update.outputs.OPENWRTROOT }}
       PLATFORM: ${{ steps.compile.outputs.PLATFORM }}
@@ -41,7 +41,8 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-1804) tree
+        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004) tree
+        sudo apt-get -y install python3 git-core curl
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
@@ -53,10 +54,9 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         rm -rf ./package/boot/uboot-rockchip
-        svn co https://github.com/friendlyarm/friendlywrt/branches/master/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
+        svn co https://github.com/friendlyarm/friendlywrt/branches/master/package/boot/uboot-rockchip package/boot/uboot-rockchip
         rm -rf ./target/linux/rockchip
-        svn co https://github.com/friendlyarm/friendlywrt/branches/master/target/linux/rockchip ./target/linux/rockchip
-        
+        svn co https://github.com/friendlyarm/friendlywrt/branches/master/target/linux/rockchip target/linux/rockchip
     - name: Update Feeds
       id: update
       run: |
@@ -68,7 +68,10 @@ jobs:
         git clone --depth=1 https://github.com/coolsnowwolf/luci customfeeds/luci
         chmod +x ../scripts/*.sh
         ../scripts/hook-feeds.sh
-        
+    - name: MOD index file
+      run: |
+         cd $OPENWRTROOT/package/lean/autocore/files/arm
+         sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:Telegram %></td><td><a href="https://t.me/DHDAXCW"><%:电报交流群%></a></td></tr>' index.htm
     - name: Install Feeds
       run: |
         cd $OPENWRTROOT
@@ -78,7 +81,6 @@ jobs:
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
         chmod +x scripts/*.sh
-        # cat configs/docker-support.config >> $OPENWRTROOT/.config
         cd $OPENWRTROOT
         ../$DIY_SH
         ../scripts/preset-clash-core.sh armv8
@@ -137,6 +139,8 @@ jobs:
         cp ../scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
         mkdir -p files/etc/opkg
         cp ../configs/opkg/distfeeds-packages-server.conf files/etc/opkg/distfeeds.conf.server
+        mkdir -p files/etc/opkg/keys
+        cp ../configs/opkg/1035ac73cc4e59e3 files/etc/opkg/keys/1035ac73cc4e59e3
         if "$KMODS_IN_FIRMWARE" = 'true'
         then
             mkdir -p files/www/snapshots
@@ -169,8 +173,8 @@ jobs:
         
   Upload:
     needs: [Build]
-    runs-on: ubuntu-18.04
-    if: github.repository == 'bobo677/NanoPi-R2S-R4S-2021-mini'
+    runs-on: ubuntu-20.04
+    if: github.repository == 'NanoPi-R2S-R4S-2021-mini'
     steps:
       - name: Checkout
         uses: actions/checkout@main
@@ -242,22 +246,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ steps.tag.outputs.release_date }} R2s 精简版 OpenWrt
+          name: ${{ steps.tag.outputs.release_date }} NanoPi R2S FusionWrt_稳定精简
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
           files: ${{ env.FIRMWARE }}/*
-
+        
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
         with:
           retain_days: 1
-          keep_minimum_runs: 1
-
+          keep_minimum_runs: 1  
+          
       - name: Remove old Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         with:
-          keep_latest: 20
+          keep_latest: 10
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
