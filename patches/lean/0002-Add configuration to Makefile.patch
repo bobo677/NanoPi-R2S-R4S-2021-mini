@@ -1,0 +1,24 @@
+From 273983634263cf3f00128ff9709d417a5fc3db8d Mon Sep 17 00:00:00 2001
+From: DHDAXCW <lasstp5011@gmail.com>
+Date: Thu, 12 Aug 2021 20:56:29 +0800
+Subject: [PATCH] xiugaiwadhui
+
+---
+ drivers/net/phy/Makefile | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
+index a03437e..a5420e1 100644
+--- a/drivers/net/phy/Makefile
++++ b/drivers/net/phy/Makefile
+@@ -70,6 +70,7 @@ obj-$(CONFIG_DP83822_PHY)	+= dp83822.o
+ obj-$(CONFIG_DP83TC811_PHY)	+= dp83tc811.o
+ obj-$(CONFIG_DP83848_PHY)	+= dp83848.o
+ obj-$(CONFIG_DP83867_PHY)	+= dp83867.o
++obj-$(CONFIG_MOTORCOMM_PHY) += motorcomm.o
+ obj-$(CONFIG_FIXED_PHY)		+= fixed_phy.o
+ obj-$(CONFIG_ICPLUS_PHY)	+= icplus.o
+ obj-$(CONFIG_INTEL_XWAY_PHY)	+= intel-xway.o
+-- 
+2.25.1
+
