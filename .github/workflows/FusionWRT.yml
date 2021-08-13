@@ -31,7 +31,7 @@ env:
 jobs:
   Build:
     runs-on: ubuntu-20.04
-    if: github.repository == 'NanoPi-R2S-R4S-2021-mini'
+    if: github.repository == 'DHDAXCW/NanoPi-R2S-R4S-2021-mini'
     outputs:
       OPENWRTROOT: ${{ steps.update.outputs.OPENWRTROOT }}
       PLATFORM: ${{ steps.compile.outputs.PLATFORM }}
@@ -184,7 +184,7 @@ jobs:
   Upload:
     needs: [Build]
     runs-on: ubuntu-20.04
-    if: github.repository == 'NanoPi-R2S-R4S-2021-mini'
+    if: github.repository == 'DHDAXCW/NanoPi-R2S-R4S-2021-mini'
     steps:
       - name: Checkout
         uses: actions/checkout@main
